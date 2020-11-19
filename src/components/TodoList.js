@@ -37,20 +37,27 @@ const TodoList = () => {
     'Walk the doge',
     'Pet the doge'
   ]);
+  const [entry, setEntry] = useState()
 
   const addTask = () => {
-    let tempArray = [...tasks, 'New Task'];
+    let tempArray = [...tasks, entry];
     manageTasks(tempArray);
   };
 
   const handleChange = (event) => {
-
+    setEntry(event.target.value)
   };
+
+  const deleteTask = (index) => {
+    let tempArray = [...tasks]
+    tempArray.splice(index, 1)
+    manageTasks(tempArray)
+  }
 
   return (
     <div className='list'>
       <Input handleChange={handleChange} addTask={addTask}/>
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} deleteTask={deleteTask}/>
     </div>
   );
 };
